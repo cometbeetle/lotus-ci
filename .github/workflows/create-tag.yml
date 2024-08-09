@@ -33,6 +33,9 @@ jobs:
     needs: create-tag
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Log into container registry
         uses: docker/login-action@v3.3.0
         with:
