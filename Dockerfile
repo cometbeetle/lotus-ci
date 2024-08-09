@@ -1,6 +1,5 @@
 FROM python:3.12
 
-RUN pip install uv
 RUN mkdir -p /opt/oracle
 
 WORKDIR /opt/oracle
