@@ -19,7 +19,7 @@ jobs:
       - name: Create tag
         run: |
           TAG_NAME=$(date --rfc-3339=date)
-          git tag $TAG_NAME
+          git tag -f $TAG_NAME
           git push origin $TAG_NAME
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
