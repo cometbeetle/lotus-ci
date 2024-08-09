@@ -47,7 +47,7 @@ jobs:
           tags: |
             type=schedule
             type=ref,event=tag
-            type=edge
+            type=raw,value=latest
             type=ref,event=branch
             type=ref,event=pr
 
