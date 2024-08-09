@@ -9,4 +9,6 @@ RUN wget https://download.oracle.com/otn_software/linux/instantclient/2350000/in
 RUN unzip instantclient-basic-linux.x64-23.5.0.24.07.zip
 ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_23_5
 
+ENV TEST="hello"
+
 WORKDIR /
