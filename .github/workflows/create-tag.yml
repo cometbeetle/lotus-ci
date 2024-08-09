@@ -1,9 +1,10 @@
 name: Create tag and image
 
 on:
-  push:
-    branches: 
-      - main
+#  push:
+#    branches: 
+#      - main
+  workflow_dispatch:
 
 permissions:
   contents: write
