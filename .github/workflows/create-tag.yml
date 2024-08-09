@@ -1,4 +1,4 @@
-name: Create tag on main
+name: Create tag
 
 on:
   push:
