@@ -3,7 +3,7 @@ name: Deploy image
 on:
   workflow_call:
     inputs:
-      version:
+      image-tags:
         required: true
         type: string
 
@@ -44,7 +44,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}:latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}:${{ inputs.version }}
+          tags: ${{ inputs.image-tags }}
       
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1

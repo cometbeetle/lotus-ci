@@ -37,4 +37,4 @@ jobs:
       attestations: write
       id-token: write
     with:
-      version: ${{ needs.create-tag.outputs.tag-name }}
+      image-tags: ghcr.io/${{ github.repository }}:latest,ghcr.io/${{ github.repository }}:${{ needs.create-tag.outputs.tag-name }}
