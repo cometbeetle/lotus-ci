@@ -23,3 +23,6 @@ jobs:
           git push origin $TAG_NAME
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-image:
+    uses: ./.github/workflow/deploy-image.yml

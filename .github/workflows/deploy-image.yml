@@ -4,10 +4,7 @@ on:
   push:
     tags:
       - '**'
-  workflow_run:
-    workflows: ["Create tag"]
-    types:
-      - completed
+  workflow_call:
 
 env:
   REGISTRY: ghcr.io
