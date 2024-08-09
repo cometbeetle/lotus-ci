@@ -25,4 +25,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy-image:
-    uses: ./.github/workflow/deploy-image.yml
+    uses: ./.github/workflows/deploy-image.yml
