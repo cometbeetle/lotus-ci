@@ -1,5 +1,7 @@
 FROM python:3.12
 
+RUN pip install uv
+
 RUN apt-get update && apt-get install libaio1 graphviz -y
 
 RUN mkdir -p /opt/oracle
