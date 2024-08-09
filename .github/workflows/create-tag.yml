@@ -24,6 +24,8 @@ jobs:
         run: |
           echo "TAG_NAME=$(date --rfc-3339=date | tr - .)" >> $GITHUB_OUTPUT
           TAG_NAME=$(date --rfc-3339=date | tr - .)
+          git tag --delete $TAG_NAME || true
+          git push --delete origin $TAG_NAME || true
           git tag $TAG_NAME
           git push origin $TAG_NAME
         env: 
