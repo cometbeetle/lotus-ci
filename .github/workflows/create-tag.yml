@@ -1,17 +1,12 @@
 name: Create tag and image
 
 on:
-#  push:
-#    branches: 
-#      - main
-  workflow_dispatch:
+  push:
+    branches: 
+      - main
 
 permissions:
   contents: write
-
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   create-tag:
@@ -22,12 +17,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create tag
+        id: tag
         run: |
+          echo "TAG_NAME=$(date --rfc-3339=date)" >> $GITHUB_OUTPUT
           TAG_NAME=$(date --rfc-3339=date)
           git tag $TAG_NAME
           git push origin $TAG_NAME
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      tag-name: ${{ steps.tag.outputs.TAG_NAME }}
 
   deploy-image:
     uses: ./.github/workflows/deploy-image.yml
@@ -37,3 +36,5 @@ jobs:
       packages: write
       attestations: write
       id-token: write
+    with:
+      version: ${{ needs.create-tag.outputs.tag-name }}
