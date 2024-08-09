@@ -23,14 +23,3 @@ jobs:
           TAG_NAME=$(date --rfc-3339=date)
           git tag $TAG_NAME
           git push origin $TAG_NAME
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  deploy-image:
-    uses: ./.github/workflows/deploy-image.yml
-    needs: create-tag
-    permissions:
-      contents: read
-      packages: write
-      attestations: write
-      id-token: write
