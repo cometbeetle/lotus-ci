@@ -1,9 +1,9 @@
-name: Publish image
+name: Deploy image from tag
 
 on:
   push:
     tags:
-      - '**'
+      - "**"
 
 env:
   REGISTRY: ghcr.io
