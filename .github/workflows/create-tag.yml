@@ -19,8 +19,8 @@ jobs:
       - name: Create tag
         id: tag
         run: |
-          echo "TAG_NAME=$(date --rfc-3339=date)" >> $GITHUB_OUTPUT
-          TAG_NAME=$(date --rfc-3339=date)
+          echo "TAG_NAME=$(date --rfc-3339=date | tr - .)" >> $GITHUB_OUTPUT
+          TAG_NAME=$(date --rfc-3339=date | tr - .)
           git tag $TAG_NAME
           git push origin $TAG_NAME
         env: 
