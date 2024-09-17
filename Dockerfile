@@ -1,6 +1,6 @@
 FROM python:3.12
 
-RUN pip install uv
+RUN pip install uv==0.4.9
 
 RUN apt-get update && apt-get install libaio1 graphviz -y
 
