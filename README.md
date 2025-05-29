@@ -11,7 +11,7 @@ The image includes:
 * [libaio1 library](https://packages.debian.org/bookworm/libaio1) (dependency of Instant Client)
 * [pandoc](https://packages.debian.org/bookworm/pandoc) (dependency of `nbsphinx`)
 
-Additionally, the dependencies of `lotus` are pre-installed with `uv` to save bandwidth.
+Additionally, some large dependencies of `lotus` are pre-installed with `uv` to save CI time.
 
 
 ### Image Creation Schedule
