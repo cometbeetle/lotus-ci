@@ -3,7 +3,7 @@ FROM python:3.12-slim
 RUN pip install uv
 
 # Install dependencies.
-RUN apt-get update && apt-get install libaio1 graphviz pandoc curl unzip -y
+RUN apt-get update && apt-get install libaio1 graphviz pandoc curl unzip git -y
 
 # Install instant client.
 RUN mkdir -p /opt/oracle
