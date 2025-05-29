@@ -9,6 +9,10 @@ The image includes:
 * [Graphviz](https://packages.debian.org/bookworm/graphviz) (for building the documentation)
 * [Oracle Instant Client](https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html) (version 23.5)
 * [libaio1 library](https://packages.debian.org/bookworm/libaio1) (dependency of Instant Client)
+* [pandoc](https://packages.debian.org/bookworm/pandoc) (dependency of `nbsphinx`)
+
+Additionally, the dependencies of `lotus` are pre-installed with `uv` to save bandwidth.
+
 
 ### Image Creation Schedule
 
