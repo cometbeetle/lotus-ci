@@ -1,6 +1,8 @@
 FROM python:3.12-slim
 
+# Install uv.
 RUN pip install uv
+ENV PATH="$PATH:/root/.local/bin"
 
 # Install dependencies.
 RUN apt-get update && apt-get install libaio1 graphviz pandoc curl unzip git -y
