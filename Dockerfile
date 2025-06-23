@@ -1,11 +1,11 @@
 FROM python:3.12-slim
 
+# Install dependencies.
+RUN apt-get update && apt-get install libaio1 graphviz pandoc curl unzip git -y
+
 # Install uv.
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="$PATH:/root/.local/bin"
-
-# Install dependencies.
-RUN apt-get update && apt-get install libaio1 graphviz pandoc curl unzip git -y
 
 # Install instant client.
 RUN mkdir -p /opt/oracle
