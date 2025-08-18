@@ -1,7 +1,10 @@
 FROM python:3.12-slim
 
 # Install dependencies.
-RUN apt-get update && apt-get install libaio1 graphviz pandoc curl unzip git -y
+RUN apt-get update && apt-get install libaio1t64 graphviz pandoc curl unzip git -y
+
+# Add symlink for compatibilty with libaio1.
+RUN ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
 
 # Install uv.
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
