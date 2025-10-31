@@ -1,20 +1,15 @@
-FROM python:3.12-slim
+FROM almalinux:9
 
 # Install dependencies.
-RUN apt-get update && apt-get install libaio1t64 graphviz pandoc curl unzip git -y
-
-# Add symlink for compatibilty with libaio1.
-RUN ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
+RUN dnf install -y epel-release
+RUN dnf install -y graphviz pandoc unzip git
+RUN dnf install -y https://download.oracle.com/otn_software/linux/instantclient/2326000/oracle-instantclient-basic-23.26.0.0.0-1.el9.x86_64.rpm
 
 # Install uv.
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="$PATH:/root/.local/bin"
 
-# Install instant client.
-RUN mkdir -p /opt/oracle
-WORKDIR /opt/oracle
-ADD https://download.oracle.com/otn_software/linux/instantclient/2350000/instantclient-basic-linux.x64-23.5.0.24.07.zip instantclient-basic-linux.x64-23.5.0.24.07.zip
-RUN unzip instantclient-basic-linux.x64-23.5.0.24.07.zip
-ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_23_5
+# Set container-identifying environment variable.
+ENV LOTUS_CONTAINERIZED="true"
 
 WORKDIR /
