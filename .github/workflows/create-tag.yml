@@ -42,4 +42,5 @@ jobs:
       attestations: write
       id-token: write
     with:
-      image-tags: ghcr.io/${{ github.repository }}:latest,ghcr.io/${{ github.repository }}:${{ needs.create-tag.outputs.tag-name }}
+      lotus-env-tags: ghcr.io/lotus-env:latest,ghcr.io/lotus-env:${{ github.ref_name }}
+      lotus-docs-env-tags: ghcr.io/lotus-docs-env:latest,ghcr.io/lotus-docs-env:${{ github.ref_name }}

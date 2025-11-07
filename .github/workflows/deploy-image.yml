@@ -3,7 +3,10 @@ name: Deploy image
 on:
   workflow_call:
     inputs:
-      image-tags:
+      lotus-env-tags:
+        required: true
+        type: string
+      lotus-docs-env-tags:
         required: true
         type: string
 
@@ -18,7 +21,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build-and-push-image:
+  build-and-push-lotus-env:
     runs-on: ubuntu-latest
 
     permissions:
@@ -42,10 +45,45 @@ jobs:
         id: push
         uses: docker/build-push-action@v6.6.1
         with:
-          context: .
+          context: ./lotus-env
           push: true
-          tags: ${{ inputs.image-tags }}
+          tags: ${{ inputs.lotus-env-tags }}
       
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: false
+
+build-and-push-lotus-docs-env:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log into container registry
+        uses: docker/login-action@v3.3.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        id: push
+        uses: docker/build-push-action@v6.6.1
+        with:
+          context: ./lotus-docs-env
+          push: true
+          tags: ${{ inputs.lotus-docs-env-tags }}
+
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
