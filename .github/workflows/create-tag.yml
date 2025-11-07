@@ -42,5 +42,5 @@ jobs:
       attestations: write
       id-token: write
     with:
-      lotus-env-tags: ghcr.io/${{ github.repository_owner }}/lotus-env:latest,ghcr.io/${{ github.repository_owner }}/lotus-env:${{ github.ref_name }}
-      lotus-docs-env-tags: ghcr.io/${{ github.repository_owner }}/lotus-docs-env:latest,ghcr.io/${{ github.repository_owner }}/lotus-docs-env:${{ github.ref_name }}
+      lotus-env-tags: ghcr.io/${{ github.repository_owner }}/lotus-env:latest,ghcr.io/${{ github.repository_owner }}/lotus-env:${{ needs.create-tag.outputs.tag-name }}
+      lotus-docs-env-tags: ghcr.io/${{ github.repository_owner }}/lotus-docs-env:latest,ghcr.io/${{ github.repository_owner }}/lotus-docs-env:${{ needs.create-tag.outputs.tag-name }}
