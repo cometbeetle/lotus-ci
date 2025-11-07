@@ -56,7 +56,7 @@ jobs:
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: false
 
-build-and-push-lotus-docs-env:
+  build-and-push-lotus-docs-env:
     runs-on: ubuntu-latest
 
     permissions:
