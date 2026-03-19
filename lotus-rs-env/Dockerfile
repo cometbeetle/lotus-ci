@@ -16,9 +16,6 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 # Add to PATH.
 ENV PATH="$PATH:/root/.local/bin:/root/.cargo/bin"
 
-# Add Windows target.
-RUN rustup target add x86_64-pc-windows-msvc
-
 # Install the Linux and Windows HDF5 libraries.
 WORKDIR /opt/hdf5
 RUN curl -o hdf5.tar.gz https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.5/bin/hdf5-1.10.5-linux-centos7-x86_64-shared.tar.gz \
@@ -29,19 +26,21 @@ RUN curl -o hdf5.zip https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hd
     && mv HDF_Group/HDF5/1.10.5 hdf5-1.10.5-windows \
     && rm -rf HDF_Group hdf hdf5.zip
 
+# TODO: Currently, the caching behavior does not work as intended.
+
 # Cache the necessary tools.
-WORKDIR /tmp
-RUN uv venv -p 3.12 TEMP_ENV \
-    && source TEMP_ENV/bin/activate \
-    && uv pip install 'maturin[zig,patchelf]>=1.11.5' delvewheel \
-    && deactivate \
-    && rm -rf TEMP_ENV
+#WORKDIR /tmp
+#RUN uv venv -p 3.12 TEMP_ENV \
+#    && source TEMP_ENV/bin/activate \
+#    && uv pip install 'maturin[zig,patchelf]>=1.11.5' delvewheel \
+#    && deactivate \
+#    && rm -rf TEMP_ENV
 
 # Cache the Windows UCRT using xwin.
-RUN curl -L -O https://github.com/Jake-Shadle/xwin/releases/download/0.8.0/xwin-0.8.0-x86_64-unknown-linux-musl.tar.gz \
-    && tar -xvzf xwin-0.8.0-x86_64-unknown-linux-musl.tar.gz \
-    && ./xwin-0.8.0-x86_64-unknown-linux-musl/xwin --accept-license --cache-dir /root/.xwin-cache splat \
-    && rm -rf xwin*
+#RUN curl -L -O https://github.com/Jake-Shadle/xwin/releases/download/0.8.0/xwin-0.8.0-x86_64-unknown-linux-musl.tar.gz \
+#    && tar -xvzf xwin-0.8.0-x86_64-unknown-linux-musl.tar.gz \
+#    && ./xwin-0.8.0-x86_64-unknown-linux-musl/xwin --accept-license --cache-dir /root/.xwin-cache splat \
+#    && rm -rf xwin*
 
 # Set environment variables.
 ENV LOTUS_CONTAINERIZED="true"
