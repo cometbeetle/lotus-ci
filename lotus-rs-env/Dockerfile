@@ -13,6 +13,9 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 # Install Rust.
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
+# Add to PATH.
+ENV PATH="$PATH:/root/.local/bin:/root/.cargo/bin"
+
 # Add Windows target.
 RUN rustup target add x86_64-pc-windows-msvc
 
@@ -41,7 +44,6 @@ RUN curl -L -O https://github.com/Jake-Shadle/xwin/releases/download/0.8.0/xwin-
     && rm -rf xwin*
 
 # Set environment variables.
-ENV PATH="$PATH:/root/.local/bin:/root/.cargo/bin"
 ENV LOTUS_CONTAINERIZED="true"
 ENV HDF5_DIR_LINUX="/opt/hdf5/hdf5-1.10.5-linux-centos7-x86_64-shared"
 ENV HDF5_DIR_WIN="/opt/hdf5/hdf5-1.10.5-windows"
