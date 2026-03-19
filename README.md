@@ -18,8 +18,8 @@ The images are based on [RHEL UBI 9](https://catalog.redhat.com/en/software/base
   * Everything in `lotus-env`
   * [Rust](https://www.rust-lang.org/tools/install)
   * [HDF5](https://support.hdfgroup.org/documentation/) (version 1.10.5)
-    * Libraries are available through the `HDF5_DIR_LINUX` and `HDF5_DIR_WIN` environment variables
-  * Cached UCRT libraries provided via [`xwin`](https://github.com/Jake-Shadle/xwin)
+    * Libraries are exposed through the `HDF5_DIR_LINUX` and `HDF5_DIR_WIN` environment variables
+  * ~~Cached UCRT libraries provided via [`xwin`](https://github.com/Jake-Shadle/xwin)~~
   * The following packages are installed via DNF to assist with building Rust dependencies:
     * `gcc`
     * `gcc-c++`
