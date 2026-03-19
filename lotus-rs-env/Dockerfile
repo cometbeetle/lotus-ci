@@ -40,7 +40,7 @@ RUN uv venv -p 3.12 TEMP_ENV \
 # Cache the Windows UCRT using xwin.
 RUN curl -L -O https://github.com/Jake-Shadle/xwin/releases/download/0.8.0/xwin-0.8.0-x86_64-unknown-linux-musl.tar.gz \
     && tar -xvzf xwin-0.8.0-x86_64-unknown-linux-musl.tar.gz \
-    && ./xwin-0.8.0-x86_64-unknown-linux-musl/xwin --accept-license splat \
+    && ./xwin-0.8.0-x86_64-unknown-linux-musl/xwin --accept-license --cache-dir /root/.xwin-cache splat \
     && rm -rf xwin*
 
 # Set environment variables.
