@@ -2,6 +2,7 @@ FROM registry.access.redhat.com/ubi9/ubi
 
 # Install dependencies.
 RUN dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm \
+  && dnf config-manager --set-enabled codeready-builder-for-rhel-9-$(arch) \
   && dnf install -y gcc gcc-c++ llvm msitools unzip git hostname \
   && dnf install -y https://download.oracle.com/otn_software/linux/instantclient/2326100/oracle-instantclient-basic-23.26.1.0.0-1.el9.x86_64.rpm \
   && dnf clean all
